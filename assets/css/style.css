@@ -1,0 +1,16 @@
+body {
+    /* background: */
+}
+
+.underlined {
+    /* underline the h1's necessary! */
+}
+
+.main-page {
+    width: 960px;
+    margin: 0 auto;
+}
+
+.banner {
+    border-bottom: 5px solid blue;
+}
