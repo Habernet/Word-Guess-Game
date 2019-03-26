@@ -1,29 +1,51 @@
 // Variables!
 
-var wins = 0;
-var alreadyGuessed = [];
-var guessesRemaining = 12;
-var currentWord = "";
-var wordPool = []; //I stil have to populate this!
+var wins = 0
+var alreadyGuessed = []
+var guessesRemaining = 12
+var currentWord = ''
+var underScores = []
+var correctWordArray = []
+var letterGuessed = ''
+var wordPool = [
+        'master chief',
+        'cortana',
+        'warthog',
+        'pelican',
+        'scorpion',
+        'halo'
+    ] // I still have to add more!
 
-// var answers = {
-//         MasterChief = "Chief"
-//     } // Not sure if I even need this! 
 
-
-//Functions!!
+// Functions!!
 function choooseWord() {
-    // RNG is used to index into wordPool and choose a word.
-    // Word is then split into an array and each value is displayed at position 4 
+    currentWord = wordPool[Math.floor(Math.random() * wordPool.length)]
+}
+
+function createUnderscores() {
+    for (i = 0; i < currentWord.length; i++) {
+        underScores.push('_')
+    }
 }
 
 function displayLetters() {
     // displays all instances of letterGuessed in the array at position 4.
+    if (currentWord.indexOf(letterGuessed) > -1) {
+        correctWordArray.push(letterGuessed)
+        console.log(correctWordArray)
+        underScores[currentWord.indexOf(letterGuessed)] = letterGuessed
+        console.log(underScores)
+    }
+
+    // if letterGuessed is in currentWord
+    // display all instances of letterGuessed in underScores array.
 }
 
 function isComplete() {
-    // tests whether currentWord is complete or not
-    //returns boolean
+    if (underScores.join('') == currentWord) {
+        alert('You win!')
+        return true
+    }
 }
 
 function gameOver() {
@@ -34,28 +56,39 @@ function gameOver() {
 function gameReset() {
     // This will reset guessesRemaining, call choooseWord()
     // I'm sure a few other things
+    choooseWord()
+    console.log(currentWord)
+    createUnderscores()
+    console.log(underScores)
+    guessesRemaining = 12
 }
 
-
 // Main program logic!
+choooseWord()
+console.log(currentWord)
+createUnderscores()
+console.log(underScores)
 
 document.onkeyup = function(event) {
-    var letterGuessed = event.key;
+    letterGuessed = event.key
+    console.log('letter guessed:', letterGuessed)
     if (alreadyGuessed.includes(letterGuessed)) {
-        alert("You already guessed that letter!");
+        alert('You already guessed that letter!')
     } else {
-        displayLetters();
-        alreadyGuessed.push(letterGuessed);
-        guessesRemaining--;
-        if (guessesRemaining === 0) {
-            gameOver();
-            // resetGame(); ???
+        displayLetters() // Not finished!
+        alreadyGuessed.push(letterGuessed)
+        console.log('Already Guessed:', alreadyGuessed)
+        guessesRemaining--
+        console.log('Guesses remaining:', guessesRemaining)
+        if (guessesRemaining == 0) {
+            alert('Sorry you lost!')
+            gameOver()
+                // resetGame(); ???
         }
         if (currentWord.isComplete) {
-            gameOver();
-            wins++;
+            gameOver()
+            wins++
             // resetGame(); ????
         }
     }
-
 }
