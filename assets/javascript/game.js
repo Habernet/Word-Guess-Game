@@ -7,14 +7,8 @@ var currentWord = "";
 var underScores = [];
 var letterGuessed = "";
 var wordPool = [
-    'chief',
-    'cortana',
-    'warthog',
-    'pelican',
-    'scorpion',
-    'halo',
-    'hi'
-]; // I still have to add more!
+    'chief', 'cortana', 'warthog', 'pelican', 'scorpion', 'halo', 'reclaimer', 'reach', 'harvest', 'mombasa', 'zanzibar', 'ascension', 'lockout', 'containment', 'arbiter', 'icon', 'flood', 'ghost', 'wraith', 'scarab', 'banshee', 'elephant', 'phantom'
+];
 
 var winsText = document.getElementById("wins");
 var currentWordText = document.getElementById("currentWord");
@@ -76,29 +70,39 @@ function gameReset() {
 
 // Main program logic!
 choooseWord();
-console.log(currentWord);
 createUnderScores();
-console.log(underScores);
 // currentWordText.textContent = underScores.toString();
 
 document.onkeyup = function(event) {
     letterGuessed = event.key;
+    letterGuessed.toLowerCase;
     console.log("You guessed:", letterGuessed);
-    if (alreadyGuessed.includes(letterGuessed)) {
-        alert('You already guessed that letter!');
+    if (event.keyCode >= 65 && event.keyCode <= 90) {
+        if (alreadyGuessed.includes(letterGuessed)) {
+            alert('You already guessed that letter!');
+        } else {
+            displayLetters();
+            alreadyGuessed.push(letterGuessed);
+            guessesRemaining--;
+            if (guessesRemaining == 0) {
+                alert('Sorry you lost!');
+                gameOver();
+                gameReset();
+            }
+            if (isComplete()) {
+                gameOver();
+                userWins();
+                gameReset();
+            }
+        }
     } else {
-        displayLetters();
-        alreadyGuessed.push(letterGuessed);
-        guessesRemaining--;
-        if (guessesRemaining == 0) {
-            alert('Sorry you lost!');
-            gameOver();
-            gameReset();
-        }
-        if (isComplete()) {
-            gameOver();
-            userWins();
-            gameReset();
-        }
+        alert("Please guess a letter!")
     }
+
+
+
+
+
+
+
 }
