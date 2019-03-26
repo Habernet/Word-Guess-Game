@@ -1,94 +1,104 @@
 // Variables!
 
-var wins = 0
-var alreadyGuessed = []
-var guessesRemaining = 12
-var currentWord = ''
-var underScores = []
-var correctWordArray = []
-var letterGuessed = ''
+var wins = 0;
+var alreadyGuessed = [];
+var guessesRemaining = 12;
+var currentWord = "";
+var underScores = [];
+var letterGuessed = "";
 var wordPool = [
-        'master chief',
-        'cortana',
-        'warthog',
-        'pelican',
-        'scorpion',
-        'halo'
-    ] // I still have to add more!
+    'chief',
+    'cortana',
+    'warthog',
+    'pelican',
+    'scorpion',
+    'halo',
+    'hi'
+]; // I still have to add more!
+
+var winsText = document.getElementById("wins");
+var currentWordText = document.getElementById("currentWord");
+var guessesRemainingText = document.getElementById("guessesRemaining");
+var alreadyGuessedText = document.getElementById("alreadyGuessed");
+
 
 
 // Functions!!
 function choooseWord() {
-    currentWord = wordPool[Math.floor(Math.random() * wordPool.length)]
+    currentWord = wordPool[Math.floor(Math.random() * wordPool.length)];
 }
 
-function createUnderscores() {
+function createUnderScores() {
     for (i = 0; i < currentWord.length; i++) {
-        underScores.push('_')
-    }
+        underScores.push('_');
+    };
 }
 
 function displayLetters() {
-    // displays all instances of letterGuessed in the array at position 4.
-    if (currentWord.indexOf(letterGuessed) > -1) {
-        correctWordArray.push(letterGuessed)
-        console.log(correctWordArray)
-        underScores[currentWord.indexOf(letterGuessed)] = letterGuessed
-        console.log(underScores)
+    for (i = 0; i < underScores.length; i++) {
+        if (currentWord[i] === letterGuessed) {
+            underScores[i] = letterGuessed;
+        }
     }
-
-    // if letterGuessed is in currentWord
-    // display all instances of letterGuessed in underScores array.
+    console.log(underScores);
+    // currentWordText.textContent = underScores;
 }
 
 function isComplete() {
-    if (underScores.join('') == currentWord) {
-        alert('You win!')
-        return true
+    if (underScores.join('') === currentWord) {
+        alert('You win!');
+        return true;
     }
 }
 
+function userWins() {
+    wins++;
+    // winsText.textContent = wins;
+}
+
 function gameOver() {
-    // Displays whole currentWord;
+    for (i = 0; i < currentWord.length; i++) {
+        underScores[i] = currentWord[i];
+    }
+    // currentWordText.textContent = underScores;
     // Answer is displayed;
 }
 
 function gameReset() {
-    // This will reset guessesRemaining, call choooseWord()
-    // I'm sure a few other things
-    choooseWord()
-    console.log(currentWord)
-    createUnderscores()
-    console.log(underScores)
-    guessesRemaining = 12
+    underScores = [];
+    alreadyGuessed = [];
+    choooseWord();
+    console.log(currentWord);
+    createUnderScores();
+    // currentWordText.textContent = underScores;
+    guessesRemaining = 12;
 }
 
 // Main program logic!
-choooseWord()
-console.log(currentWord)
-createUnderscores()
-console.log(underScores)
+choooseWord();
+console.log(currentWord);
+createUnderScores();
+console.log(underScores);
+// currentWordText.textContent = underScores.toString();
 
 document.onkeyup = function(event) {
-    letterGuessed = event.key
-    console.log('letter guessed:', letterGuessed)
+    letterGuessed = event.key;
+    console.log("You guessed:", letterGuessed);
     if (alreadyGuessed.includes(letterGuessed)) {
-        alert('You already guessed that letter!')
+        alert('You already guessed that letter!');
     } else {
-        displayLetters() // Not finished!
-        alreadyGuessed.push(letterGuessed)
-        console.log('Already Guessed:', alreadyGuessed)
-        guessesRemaining--
-        console.log('Guesses remaining:', guessesRemaining)
+        displayLetters();
+        alreadyGuessed.push(letterGuessed);
+        guessesRemaining--;
         if (guessesRemaining == 0) {
-            alert('Sorry you lost!')
-            gameOver()
-                // resetGame(); ???
+            alert('Sorry you lost!');
+            gameOver();
+            gameReset();
         }
-        if (currentWord.isComplete) {
-            gameOver()
-            wins++
-            // resetGame(); ????
+        if (isComplete()) {
+            gameOver();
+            userWins();
+            gameReset();
         }
     }
 }
