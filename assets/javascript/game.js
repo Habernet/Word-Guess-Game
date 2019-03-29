@@ -14,6 +14,7 @@ var winsText = document.getElementById("wins");
 var currentWordText = document.getElementById("currentWord");
 var guessesRemainingText = document.getElementById("guessesRemaining");
 var alreadyGuessedText = document.getElementById("alreadyGuessed");
+var correctWordText = document.getElementById("correctWord")
 
 
 
@@ -34,8 +35,7 @@ function displayLetters() {
             underScores[i] = letterGuessed;
         }
     }
-    console.log(underScores);
-    // currentWordText.textContent = underScores;
+    currentWordText.textContent = underScores.join(' ');
 }
 
 function isComplete() {
@@ -47,31 +47,33 @@ function isComplete() {
 
 function userWins() {
     wins++;
-    // winsText.textContent = wins;
+    winsText.textContent = wins;
 }
 
 function gameOver() {
     for (i = 0; i < currentWord.length; i++) {
         underScores[i] = currentWord[i];
     }
-    // currentWordText.textContent = underScores;
-    // Answer is displayed;
+    currentWordText.textContent = underScores;
+    correctWordText.textContent = "The correct word was: " + currentWord;
+
 }
 
 function gameReset() {
     underScores = [];
     alreadyGuessed = [];
+    alreadyGuessedText.textContent = alreadyGuessed;
     choooseWord();
-    console.log(currentWord);
     createUnderScores();
-    // currentWordText.textContent = underScores;
+    currentWordText.textContent = underScores.join(' ');
     guessesRemaining = 12;
+    guessesRemainingText.textContent = guessesRemaining;
 }
 
 // Main program logic!
 choooseWord();
 createUnderScores();
-// currentWordText.textContent = underScores.toString();
+guessesRemainingText.textContent = guessesRemaining;
 
 document.onkeyup = function(event) {
     letterGuessed = event.key;
@@ -83,26 +85,21 @@ document.onkeyup = function(event) {
         } else {
             displayLetters();
             alreadyGuessed.push(letterGuessed);
-            guessesRemaining--;
-            if (guessesRemaining == 0) {
-                alert('Sorry you lost!');
-                gameOver();
-                gameReset();
-            }
+            alreadyGuessedText.textContent = alreadyGuessed;
             if (isComplete()) {
                 gameOver();
                 userWins();
+                gameReset();
+            }
+            guessesRemaining--;
+            guessesRemainingText.textContent = guessesRemaining;
+            if (guessesRemaining === 0) {
+                alert('Sorry you lost!');
+                gameOver();
                 gameReset();
             }
         }
     } else {
         alert("Please guess a letter!")
     }
-
-
-
-
-
-
-
 }

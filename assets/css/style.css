@@ -1,16 +1,50 @@
 body {
-    /* background: */
+    background-color: #5D8AAB;
+    font-family: 'halo_reachregular', 'Times New Roman', Times, serif;
+    text-align: center;
+    color: #545a47;
 }
 
-.underlined {
-    /* underline the h1's necessary! */
+.center{
+    display: block;
+    margin: auto;
 }
 
 .main-page {
     width: 960px;
     margin: 0 auto;
+    border-width: 20px;
+    border-style: solid;
+    border-image: 
+      linear-gradient(
+        to bottom, 
+        #bd9a55, 
+        rgba(0, 0, 0, 0)
+      ) 1 100%;
 }
 
 .banner {
-    border-bottom: 5px solid blue;
+    
+}
+
+.right-aside {
+    /* border: 2px solid black; */
+}
+
+.left-aside {
+    border: 2px solid black;
+}
+.halo_font{
+    font-family: 'halo_reachregular';
+}
+
+
+@font-face {
+    font-family: 'halo_reachregular';
+    src: url('/assets/fonts/webfontkit-20190329-124046/halo_reach_v1-webfont.woff2') format('woff2'),
+         url('/assets/fonts/webfontkit-20190329-124046/halo_reach_v1-webfont.woff') format('woff'),
+         url('/assets/fonts/webfontkit-20190329-124046/halo_reach_v1-webfont.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+
 }

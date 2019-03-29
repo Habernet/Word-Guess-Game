@@ -9,28 +9,26 @@
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css">
-    <script src="/assets/javascript/game.js"></script>
 </head>
 
 <body>
     <div class="container main-page">
         <div class="row">
             <div class="col-sm-12 banner">
-                <img src="assets/images/banner.jpg" alt="HaloWordGuessGameBanner">
-
+                <img class = "center" src="assets/images/banner.jpg" alt="HaloWordGuessGameBanner">
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12">
-                <!-- Winning image will go here! -->
+            <div class="col-sm-12 center">
+                <h1><span id="correctWord">Correct Word:</span></h1>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-6 left-aside">
                 <!-- Winning ANSWER here -->
             </div>
-            <div class="col-sm-6">
-                <h1>Press any key to get started!</h1>
+            <div class="col-sm-6 right-aside">
+                <h1 class="halo_reachregular">Press any key to get started!</h1>
                 <h1>Wins:<span id="wins">*</span></h1>
                 <h1 class="underlined">Current word</h1>
                 <h1><span id="currentWord">*</span></h1>
@@ -42,6 +40,7 @@
         </div>
 
     </div>
+    <script src="assets/javascript/game.js"></script>
 
 </body>
 
