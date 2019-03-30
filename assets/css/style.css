@@ -1,8 +1,23 @@
 body {
     background-color: #5D8AAB;
-    font-family: 'halo_reachregular', 'Times New Roman', Times, serif;
+    font-family: 'halo_reachregular', cursive;
     text-align: center;
     color: #545a47;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.banner {
+    position: relative;
+}
+
+.bannertext{
+    position: absolute;
+    bottom: 10px;
+    left: 200px;
+    font-size: 50px;
+    font-weight: bolder;
+    color: white;
 }
 
 .center{
@@ -23,9 +38,6 @@ body {
       ) 1 100%;
 }
 
-.banner {
-    
-}
 
 .right-aside {
     /* border: 2px solid black; */
@@ -34,9 +46,6 @@ body {
 .left-aside {
     border: 2px solid black;
 }
-.halo_font{
-    font-family: 'halo_reachregular';
-}
 
 
 @font-face {
@@ -44,7 +53,4 @@ body {
     src: url('/assets/fonts/webfontkit-20190329-124046/halo_reach_v1-webfont.woff2') format('woff2'),
          url('/assets/fonts/webfontkit-20190329-124046/halo_reach_v1-webfont.woff') format('woff'),
          url('/assets/fonts/webfontkit-20190329-124046/halo_reach_v1-webfont.ttf') format('ttf');
-    font-weight: normal;
-    font-style: normal;
-
 }

@@ -45,9 +45,12 @@ function isComplete() {
     }
 }
 
+
 function userWins() {
     wins++;
     winsText.textContent = wins;
+    // Update the left-aside div with the corresponding image. Using a lookup dictionary (object?) to
+    // update the div's <img src = ''>
 }
 
 function gameOver() {
@@ -56,7 +59,6 @@ function gameOver() {
     }
     currentWordText.textContent = underScores;
     correctWordText.textContent = "The correct word was: " + currentWord;
-
 }
 
 function gameReset() {
